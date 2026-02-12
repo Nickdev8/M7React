@@ -3,9 +3,10 @@ import { HelloWorld } from './helloworld'
 
 function App() {
   return (
-    <HelloWorld/>
+    <div className="app">
+      <HelloWorld title="Hello World" />
+    </div>
   )
-
 }
 
 export default App
