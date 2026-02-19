@@ -9,7 +9,6 @@ export function Pokemon() {
       .then((response) => response.json())
       .then((data) => {
         setPokemon(data);
-        console.log(data);
       });
 
     fetch("https://pokeapi.co/api/v2/pokemon-species/254")
@@ -21,6 +20,12 @@ export function Pokemon() {
         }));
       });
   }, []);
+  
+  useEffect(() => {
+    if (pokemon) {
+      console.log("COMBINED POKEMON:", pokemon);
+    }
+  }, [pokemon]);
 
   if (pokemon === null) {
     return (
