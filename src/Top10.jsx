@@ -1,9 +1,10 @@
 import styles from './Top10.module.css'
 
 export function Top10() {
+  const base = import.meta.env.BASE_URL
 
   const photos = Array.from({ length: 10 }, (_, index) => ({
-    src: `/top10/${index + 1}.webp`,
+    src: `${base}top10/${index + 1}.webp`,
     alt: `Top 10 photo ${index + 1}`
   }))
 
