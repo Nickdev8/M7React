@@ -1,0 +1,5 @@
+.pokemon >li{
+     display: flex;
+}
+.name, .id {
+}
