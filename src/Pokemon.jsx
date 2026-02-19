@@ -11,12 +11,14 @@ export function Pokemon() {
         setPokemon(data);
         console.log(data);
       });
+
     fetch("https://pokeapi.co/api/v2/pokemon-species/254")
       .then((response) => response.json())
-      .then((data) => {
-        newdata = [...pokemon.name, data]
-        setPokemon(newdata);
-        console.log(data);
+      .then((speciesData) => {
+        setPokemon((prevPokemon) => ({
+          ...prevPokemon,
+          species: speciesData,
+        }));
       });
   }, []);
 
