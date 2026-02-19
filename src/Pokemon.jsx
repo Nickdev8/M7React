@@ -2,53 +2,55 @@ import styles from "./Pokemon.module.css";
 import { useState, useEffect } from "react";
 
 export function Pokemon() {
-  const [pokemon, setPokemon] = useState(null);
+  const [pokemonBase, setPokemonBase] = useState(null);
+  const [pokemonSpecies, setPokemonSpecies] = useState(null);
 
+  const id = 254;
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/254")
+    fetch("https://pokeapi.co/api/v2/pokemon/" + id)
       .then((response) => response.json())
       .then((data) => {
-        setPokemon(data);
+        setPokemonBase(data);
       });
 
-    fetch("https://pokeapi.co/api/v2/pokemon-species/254")
+    fetch("https://pokeapi.co/api/v2/pokemon-species/" + id)
       .then((response) => response.json())
       .then((speciesData) => {
-        setPokemon((prevPokemon) => ({
-          ...prevPokemon,
-          species: speciesData,
-        }));
+        setPokemonSpecies(speciesData);
       });
   }, []);
-  
-  useEffect(() => {
-    if (pokemon) {
-      console.log("COMBINED POKEMON:", pokemon);
-    }
-  }, [pokemon]);
 
-  if (pokemon === null) {
+  if (!pokemonBase || !pokemonSpecies) {
     return (
       <section className={styles.pokemon}>
-        <h2>Fetching Pokemon</h2>
+        <h2>Fetching Pokemon...</h2>
       </section>
     );
   } else {
-    return (
-      <ul className={styles.pokemon}>
-        <li>
-          <p className={styles.name}>{pokemon.name}</p>
-          <img src={pokemon.sprites.front_default} />
-          <p className={styles.id}>{pokemon.id}</p>
-          <p className={styles.id}>{pokemon.id}</p>
+    const pokemon = { ...pokemonBase, ...pokemonSpecies };
+    const flavorText = pokemon.flavor_text_entries[0].flavor_text.replace(/\f/g,"",);
 
-          <ul>
-            {pokemon.types.map((typeObj, index) => (
-              <li key={index}>{typeObj.type.name}</li>
-            ))}
-          </ul>
-        </li>
-      </ul>
+    return (
+      <section className={styles.pokemon}>
+        <h2>{pokemon.name}</h2>
+        <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+        <p>#{pokemon.id}</p>
+        <p>{flavorText}</p>
+
+        <h3>Types</h3>
+        <ul>
+          {pokemon.types.map((typeObj) => (
+            <li key={typeObj.type.name}>{typeObj.type.name}</li>
+          ))}
+        </ul>
+
+        <h3>Moves</h3>
+        <ul className={styles.moves}>
+          {pokemon.moves.map((moveObj) => (
+            <li key={moveObj.move.name}>{moveObj.move.name}</li>
+          ))}
+        </ul>
+      </section>
     );
   }
 }
