@@ -6,6 +6,7 @@ import { About } from "./about/About";
 import { Games } from "./games/Games";
 import { Contact } from "./contact/Contact";
 import { Gallery } from "./grallery/Gallery";
+import { Todo } from "./todo/Todo";
 import { NotFound } from "./NotFound";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
   if (path === "/games") page = <Games />;
   if (path === "/gallery") page = <Gallery />;
   if (path === "/contact") page = <Contact />;
+  if (path === "/todo") page = <Todo />;
 
   return (
     <div className="app">

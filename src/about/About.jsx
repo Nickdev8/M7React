@@ -1,5 +1,5 @@
 import { HelloWorld } from "./helloworld";
-import { Top10 } from "../Top10";
+import { Top10 } from "./Top10";
 
 export function About() {
   return (

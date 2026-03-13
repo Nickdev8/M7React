@@ -19,6 +19,9 @@ export function Navbar() {
         <li>
           <a href="#/contact">Contact</a>
         </li>
+        <li>
+          <a href="#/todo">Todo</a>
+        </li>
       </ul>
     </nav>
   );
