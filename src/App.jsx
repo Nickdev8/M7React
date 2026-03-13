@@ -1,11 +1,11 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { Navbar } from "./Navbar";
-import { Home } from "./Home";
-import { About } from "./About";
-import { Games } from "./Games";
-import { Contact } from "./Contact";
-import { Gallery } from "./Gallery";
+import { Navbar } from "./templates/Navbar";
+import { Home } from "./templates/Home";
+import { About } from "./about/About";
+import { Games } from "./games/Games";
+import { Contact } from "./contact/Contact";
+import { Gallery } from "./grallery/Gallery";
 import { NotFound } from "./NotFound";
 
 function App() {
